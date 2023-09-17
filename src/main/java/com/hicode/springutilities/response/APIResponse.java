@@ -1,9 +1,12 @@
 package com.hicode.springutilities.response;
 
 import com.hicode.springutilities.message.ResponseMessage;
+import com.hicode.springutilities.message.TypeError;
 import org.springframework.http.ResponseEntity;
 /**
+ * APIResponse
  *
+ * @author hicode
  * */
 public final class APIResponse {
     /**status code*/
@@ -12,6 +15,10 @@ public final class APIResponse {
     private String message;
     /**data*/
     private Object data;
+
+    /** type error**/
+
+    private TypeError typeError;
 
     public Integer getStatus() {
         return status;
@@ -68,6 +75,14 @@ public final class APIResponse {
     public static ResponseEntity<?> ok(String message, Object data){
         return ResponseEntity.ok(new APIResponse(200, message, data));
     }
+
+    public APIResponse(Integer status, String message, Object data, TypeError typeError) {
+        this.status = status;
+        this.message = message;
+        this.data = data;
+        this.typeError = typeError;
+    }
+
     /**
      * success response
      * @param data
@@ -102,5 +117,10 @@ public final class APIResponse {
     public  static ResponseEntity<?> fail(Integer status, String message){
         return ResponseEntity.ok(new APIResponse(status, message, null));
     }
+
+    public  static ResponseEntity<?> fail(Integer status, String message, Object data, TypeError typeError){
+        return ResponseEntity.ok(new APIResponse(status, message, data, typeError));
+    }
+
 
 }
