@@ -11,7 +11,8 @@ import java.util.Base64;
  *
  * @author hicode
  */
-public class Encryptable {
+public class Encryption {
+
 
     private static final String AES_ALGORITHM = "AES";
 
@@ -51,7 +52,7 @@ public class Encryptable {
      * @param encryptedData
      * @return String
      */
-    public String decrypt(String encryptedData) {
+    public static String decrypt(String encryptedData) {
         try {
             byte[] encryptedBytes = Base64.getDecoder().decode(encryptedData);
 
